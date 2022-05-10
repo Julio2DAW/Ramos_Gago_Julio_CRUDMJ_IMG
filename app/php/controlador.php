@@ -45,26 +45,13 @@
              * Compruebo que el elemento input file de icono del formulario esté en blanco.
              * Si lo está guardo en la base de datos 'NULL'.
              */
-            $directorio='../img_icono/'; //Directorio donde se van a subir los ficheros o archivos
-            $tmp_name=$_FILES['icono']['tmp_name']; //Nombre y ruta temporal del fichero
-            $name = basename($_FILES['icono']['name']);
-            $tipo=$_FILES['icono']['type']; //Tipo del archivo subido
-            $tamaño=$_FILES['icono']['size']; //Tamaño del archivo subido
+            if(isset($_POST['icono'])){
 
-            if($tipo=="image/png"||$tipo=="image/jpg"||$tipo=="application/pdf") {
-
-                if($tamaño > 20971520) {
-
-                    echo "El tamaño del archivo es muy grande, elija otro archivo más pequeño";
-                }else {
-
-                    $dir_subida=$directorio.$name; //Directorio + nombre del fichero
-                    move_uploaded_file($tmp_name, $dir_subida); //Muevo el fichero o archivo de la ruta temporal a el directorio de subida
-                    echo 'Archivo subido correctamente';
-                }
-            }else {
-                
-                echo 'El archivo no se ha subido correctamente, utilice una extensión .png .jpg o .pdf';
+                $directorio = '../icons/'; //Directorio donde se van a subir los ficheros o archivos
+                $icono = $_FILES['icono']['tmp_name']; //Nombre y ruta temporal del fichero
+                $name = basename($_FILES['icono']['name']);
+            }else{
+                $icono='NULL';
             }
 
             /**
@@ -80,7 +67,7 @@
             }
 
             /*Llamo a la función altaMinijuegos de la clase modelo para ejecutar la consulta y le paso los atributos*/
-            $this->modelo->altaMinijuegos($nombre, $_POST['icono'], $ruta);
+            $this->modelo->altaMinijuegos($nombre, $icono, $ruta);
 
             /*Compruebo el número de filas afectadas*/
             if($this->modelo->conexion->affected_rows>0){
