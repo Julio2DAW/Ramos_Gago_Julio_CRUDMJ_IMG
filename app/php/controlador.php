@@ -45,19 +45,7 @@
              * Compruebo que el elemento input file de icono del formulario esté en blanco.
              * Si lo está guardo en la base de datos 'NULL'.
              */
-            /*
-            if(isset($_POST['icono'])) {
-
-                $directorio = '../icons/'; //Directorio donde se van a subir los ficheros o archivos
-                $icono = $_FILES['icono']['tmp_name']; //Nombre y ruta temporal del fichero
-                $name = basename($_FILES['icono']['name']);
-            }else {
-
-                $icono='NULL';
-            }*/
-
             if(isset($_FILES['icono'])) {
-
                 
                 if (isset($_FILES['icono']['name']) && $_FILES['icono']['name'] != "") {
 
@@ -81,6 +69,7 @@
                         //Si las características son correctas se sube al servidor
                         if (move_uploaded_file($temp, '../icons/' . basename($_FILES['icono']['name']))) {
                             
+                            //MUestro un mensaje para mostrar que se ha subido.
                             echo '<div>La imagen se ha subido</div>';
                         }
                     }
