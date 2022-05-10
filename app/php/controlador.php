@@ -45,15 +45,50 @@
              * Compruebo que el elemento input file de icono del formulario esté en blanco.
              * Si lo está guardo en la base de datos 'NULL'.
              */
-            if(isset($_POST['icono'])){
+            /*
+            if(isset($_POST['icono'])) {
 
                 $directorio = '../icons/'; //Directorio donde se van a subir los ficheros o archivos
                 $icono = $_FILES['icono']['tmp_name']; //Nombre y ruta temporal del fichero
                 $name = basename($_FILES['icono']['name']);
-            }else{
+            }else {
+
+                $icono='NULL';
+            }*/
+
+            if(isset($_FILES['icono'])) {
+
+                
+                if (isset($_FILES['icono']['name']) && $_FILES['icono']['name'] != "") {
+
+                     //Datos necesarios del archivo
+                     $icono="'".basename($_FILES['icono']['name'])."'";
+                     $tipo = $_FILES['icono']['type'];
+                     $tamano = $_FILES['icono']['size'];
+                     $temp = $_FILES['icono']['tmp_name'];
+
+                     //Comprobar tamaño y extensión del archivo
+                    if (!((strpos($tipo, "png") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "gif")) && ($tamano < 20000000))) {
+
+                        //Si las características no son correctas mostrará este mensaje
+                        echo    '<div>
+                                    <p>Algo no es compatible, comprueba si las características concuerdan con las siguientes</p>
+                                    <p>Tamaño: 2mb</p>
+                                    <p>Extensiones: png - jpeg - jpg - gif</p>
+                                </div>';
+                    } else {
+                        
+                        //Si las características son correctas se sube al servidor
+                        if (move_uploaded_file($temp, '../icons/' . basename($_FILES['icono']['name']))) {
+                            
+                            echo '<div>La imagen se ha subido</div>';
+                        }
+                    }
+                }
+            }else {
+
                 $icono='NULL';
             }
-
             /**
              * Compruebo que el elemento input text de ruta del formulario no esté en blanco.
              * Si lo está retorno un mensaje de advertencia.
