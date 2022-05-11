@@ -121,4 +121,39 @@
             /*Llamo a la función listar_minijuegos de la clase modelo para ejecutar la consulta y retorno el resultado a listar.php*/
             return $this->modelo->listarMinijuegos();
         }
+
+        /**
+         * @function verMinijuego()
+         * Función para ver el minijuego.
+         */
+        function verMinijuego(){
+
+            if(isset($_GET['id'])) {
+
+                $id = $_GET['id'];
+                return $this->modelo->consultarMinijuego($id);
+            }else {
+
+                return 'Ha sucedido un problema';
+            }
+        }
+
+        /**
+         * @function eliminarMinijuegos()
+         * Función para eliminar los minijuegos.
+         * Le paso por parámetro el id ($id)
+         */
+        function eliminarMinijuegos($id, $icono){
+
+            $this->modelo->borrarMinijuegos($id);
+            
+            if($this->modelo->conexion->affected_rows > 0) {
+                //unlink sirve para borrar un fichero, visto en php.net 
+                unlink('../icons/'.$icono);
+                return "Minijuego eliminado";
+            }else {
+
+                return "El minijuego no se pudo borrar";
+            }
+        }
     }

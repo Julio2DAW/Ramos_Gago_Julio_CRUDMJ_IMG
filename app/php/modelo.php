@@ -54,4 +54,27 @@
             /*Ejecuto la consulta y la retorno*/
             return $this->conexion->query($sql);
         }
+
+        /**
+         * @function consultarMinijuego()
+         * Función que realiza una consulta (select), para sacar un minijuego en concreto
+         * Le paso por párametro el id del minijuego ($id)
+         */
+        function consultarMinijuego($id){
+
+            $sql = "SELECT * FROM minijuego WHERE id=$id";
+            return $this->conexion->query($sql);
+        }
+
+        /**
+         * @function borrarMinijuegos
+         * Función que realiza una consulta (delete), para borrar el juego marcado.
+         * Le paso por párametro el id del minijuego ($id)
+         */
+        function borrarMinijuegos($id){
+
+            /*Consulta sql para borrar los datos*/
+            $sql = "DELETE FROM minijuego WHERE id=$id";
+            $this->conexion->query($sql);
+        }
     }
