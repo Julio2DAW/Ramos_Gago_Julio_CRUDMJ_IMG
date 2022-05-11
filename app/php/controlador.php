@@ -162,7 +162,7 @@
          * Función para modificar los minijuegos.
          * Le paso por parámetro el id ($id)
          */
-        function actualizarMinijuegos($id, $icono) {
+        function actualizarMinijuegos($id) {
 
             /**
              * Compruebo que el elemento input text de nombre del formulario no esté en blanco.
@@ -210,6 +210,7 @@
                     }
                 }
             }else {
+
                 $icono='NULL';
                 unlink('../icons/'.$icono);
             }

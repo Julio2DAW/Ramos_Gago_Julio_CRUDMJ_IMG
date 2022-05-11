@@ -56,11 +56,11 @@
          * Llamo a la función actualizarMinijuegos($id) de la clase Controlador.
          * Muestro el resultado con un 'echo.
          */
-        $resultado = $controlador->actualizarMinijuegos($id, $icono);
+        $resultado = $controlador->actualizarMinijuegos($id);
         echo $resultado;
         //Redireccionar a la vista listar.php a los dos segundos, para que al usuario le de tiempo
         //a poder ver que le ha saltado por pantalla el mensaje de confirmación de que ese minijuego ha sido borrado.
-        header("refresh:2; url=listar.php");
+        //header("refresh:2; url=listar.php");
         
     }else {
 
