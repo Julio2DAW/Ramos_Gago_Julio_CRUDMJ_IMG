@@ -42,4 +42,16 @@
             //Ejecuto la consulta.
             $this->conexion->query($sql);
         }
+
+        /**
+         * @function listarMinijuegos
+         * Función que realiza una consulta (select), para mostrar los datos de la tabla minijuegos.
+         */
+        function listarMinijuegos(){
+
+            /*Consuta sql para obtener los datos*/
+            $sql = "SELECT * FROM minijuego";
+            /*Ejecuto la consulta y la retorno*/
+            return $this->conexion->query($sql);
+        }
     }

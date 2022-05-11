@@ -110,4 +110,15 @@
                 }
             }
         }
+
+        /**
+         * @function mostrarMinijuegos()
+         * Función para mostrar los minijuegos.
+         * @return $this->modelo->listarMinijuegos().
+         */
+        function mostrarMinijuegos(){
+
+            /*Llamo a la función listar_minijuegos de la clase modelo para ejecutar la consulta y retorno el resultado a listar.php*/
+            return $this->modelo->listarMinijuegos();
+        }
     }
