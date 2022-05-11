@@ -77,4 +77,19 @@
             $sql = "DELETE FROM minijuego WHERE id=$id";
             $this->conexion->query($sql);
         }
+
+        /**
+         * @function modificarMinijuegos
+         * Función que realiza una consulta (update), para actualizar el juego marcado.
+         * Le paso por párametro el id del minijuego ($id)
+         * Le paso por párametro el nombre del minijuego ($nombre)
+         * Le paso por párametro el icono del minijuego ($icono)
+         * Le paso por párametro el ruta del minijuego ($ruta)
+         */
+        function modificarMinijuegos($id, $nombre, $icono, $ruta) {
+
+            /*Consulta sql para modificar los datos*/
+            $sql = "UPDATE minijuego SET nombre=$nombre,icono=$icono,ruta=$ruta WHERE id=$id";
+            $this->conexion->query($sql);
+        }
     }
